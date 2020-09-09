@@ -31,43 +31,53 @@ var numberOfHighscores = 5;
 // Questions Array
 var questionSet = [
     {
-        question: "Test",
-        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
+        question: "If someone were to describe HTML as the 'bones' of a program and CSS as the 'skin', how would you most accurately describe Javascript?",
+        answers: ["The eyes", "The internal organs", "The nose", "The teeth",],
         correctChoice: "b",
     },
     {
-        question: "Test",
-        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
+        question: "When Javascript was first created what was it's name?",
+        answers: ["JenkinsScript", "C flat", "LiveScript", "ScriptMaster",],
         correctChoice: "c",
     },
     {
-        question: "Test",
-        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
+        question: "When declaring a variable in Javascript, what two elemenats MUST it have?",
+        answers: ["Name and Value", "Name and Status", "Type and Number", "ID and Class",],
         correctChoice: "a",
     },
     {
-        question: "Test",
-        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
+        question: "What is an effective tool to test your outputs WITHOUT impacting the user experience?",
+        answers: ["getitembyID()", "console.log()", "write.status", "Alert",],
         correctChoice: "b",
     },
     {
-        question: "Test",
-        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
+        question: "Which of the following items will cause a box to display on the page and then store a boolean response from the user?",
+        answers: ["Confirm", "Prompt", "Alert", "Console.log()",],
         correctChoice: "a",
     },
     {
-        question: "Test",
-        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
+        question: "What JS element is able to store multiple variables that can be accessed through an index?",
+        answers: ["Series", "List", "Array", "Repository",],
         correctChoice: "c",
     },
     {
-        question: "Test",
-        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
+        question: "What type of loop is most appropriate if you want to run the loop until a specific condition is met?",
+        answers: ["For Loop", "for/in Loop", "While Loop", "For/of loop",],
         correctChoice: "c",
     },
     {
-        question: "Test",
-        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
+        question: "What number do array indices typically start at? ",
+        answers: ["null", "-1", "1", "0",],
+        correctChoice: "d",
+    },
+    {
+        question: "What is a Javacript Method?",
+        answers: ["A piece of data returned by the program", "A guide book on how to write Javascript", "A stored list of values", "An action that can be performed on a javascript object, variable, or expression.",],
+        correctChoice: "d",
+    },
+    {
+        question: "Which of the following is a built-in Javascript Method?",
+        answers: ["returnValue()", "runSequence()", "concatenateALL()", "toString()",],
         correctChoice: "d",
     },
 
@@ -183,8 +193,6 @@ function handleClick() {
 
 }
 
-// Check if user input is correct, deduct 10 seconds if not.
-
 function checkAnswer(question) {
     if (userChoice === question.correctChoice) {
         score++;
@@ -207,9 +215,8 @@ function checkAnswer(question) {
 }
 
 
-// Event listeners
-// ===============
-// Take user answer on multiplce choice question
+
+//User selection storage
 
 answerA.addEventListener("click", function () {
     userChoice = "a";
@@ -239,8 +246,7 @@ highscoresLink.addEventListener("click", function (event) {
     displayHighscores();
 });
 
-// Once the Start quiz button pressed, hide the welcome screen, show the first question and start the quiz
-
+//Start Quiz
 startButton.addEventListener("click", function () {
     $("#welcome-screen").hide();
     $("#quiz-section").show();
@@ -258,13 +264,13 @@ submitScoreButton.addEventListener("click", function () {
         name = "Anonymous";
     }
 
-   
+
     var i = 0;
     if (highScore === null) {
         highScore = [{ "name": name, "score": score }];
     } else {
 
-        
+
         while (i < numberOfHighscores && i < highScore.length && highScoreUnchanged) {
             if (score > highScore[i].score) {
                 highScore.splice(i, 0, { "name": name, "score": score })
@@ -273,7 +279,7 @@ submitScoreButton.addEventListener("click", function () {
             i++;
         }
 
-      
+
         if (i < numberOfHighscores && highScoreUnchanged) {
             highScore.push({ "name": name, "score": score });
         }
