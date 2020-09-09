@@ -8,23 +8,23 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="Assets/styles.css">
 
 </head>
 
 <body>
 
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" id="highscores" data-toggle="modal" data-target="#highscores-modal">View Highscores</a>
-        <p class="navbar-text ml-auto disabled" id="seconds-remaining"><span id="number-of-secs"> 0</span> secs
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" id="highscores" data-toggle="modal" data-target="#highscores-modal">Highscores</a>
+        <p class="navbar-text ml-auto disabled" id="seconds-remaining"><span id="number-of-secs"> 120</span> seconds
             remaining</p>
     </nav>
 
     <div class="container jumbotron mt-5" id="welcome-screen">
         <h1 class="display-4 mb-4">Timed Coding Quiz</h1>
-        <p class="lead">Click the 'Start' button below to begin the quiz. You will have 60 seconds to complete 10
-            questions. Every incoorect answer will deduct 5 seconds from your time. Good luck!</p>
-        <a class="btn btn-dark btn-lg mt-4" href="#" role="button" id="start-button">Start</a>
+        <p class="lead">Click the 'Start' button below to begin the quiz. You will have 120 seconds to complete 10
+            questions. Every incorrect answer will deduct 5 seconds from your time. Good luck!</p>
+        <a class="btn btn-primary btn-lg mt-4" href="#" role="button" id="start-button">Start</a>
         </p>
     </div>
 
@@ -52,7 +52,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">[TOP 5] HIGHSCORES</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">HIGHSCORES</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -61,8 +61,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Go back</button>
-                    <button type="button" class="btn btn-primary" id="clear-highscores">Clear highscores</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-primary" id="clear-highscores">Delete highscores</button>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">All Done!</h5>
+                    <h5 class="modal-title">Finished!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -80,8 +80,8 @@
                 <div class="modal-body container">
                     <p id="user-score"></p>
                     <div class="row">
-                        <label for="#initials" class="ml-3">Enter your initials </label>
-                        <input id="initials" class="ml-auto mr-3 col-6" placeholder="NoName"> </input>
+                        <label for="#initials" class="ml-3">Enter your moniker! </label>
+                        <input id="initials" class="ml-auto mr-3 col-6" placeholder="anonymous"> </input>
 
                     </div>
 
@@ -105,7 +105,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="assets/script.js"></script>
+    <script type="text/javascript" src="Assets/script.js"></script>
 
 </body>
 

@@ -1,9 +1,8 @@
 
-
-//variable assignment
+//VARIBALE Assignment
 
 var highscoresLink = document.getElementById("highscores");
-var remainingTimeLabel = document.getElementById("number-of-secs");
+var remainingTime = document.getElementById("number-of-secs");
 var welcomeScreen = document.getElementById("welcome-screen");
 var startButton = document.getElementById("start-button");
 var quizSection = document.getElementById("quiz-section");
@@ -26,60 +25,50 @@ const gameTime = 120;
 var userChoice;
 var questionNumber = 0;
 var score = 0;
-var penaltyDeduction = 10;
+var penalty = 5;
 var numberOfHighscores = 5;
 
-//Questions Array
+// Questions Array
 var questionSet = [
     {
-        question: "Test test test",
-        answers: ["testa", "testb", "testc", "testd",],
+        question: "Test",
+        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
         correctChoice: "b",
     },
     {
-        question: "Test test test",
-        answers: ["testa", "testb", "testc", "testd",],
-        correctChoice: "a",
-    },
-    {
-        question: "Test test test",
-        answers: ["testa", "testb", "testc", "testd",],
-        correctChoice: "d",
-    },
-    {
-        question: "Test test test",
-        answers: ["testa", "testb", "testc", "testd",],
-        correctChoice: "a",
-    },
-    {
-        question: "Test test test",
-        answers: ["testa", "testb", "testc", "testd",],
-        correctChoice: "b",
-    },
-    {
-        question: "Test test test",
-        answers: ["testa", "testb", "testc", "testd",],
-        correctChoice: "d",
-    },
-    {
-        question: "Test test test",
-        answers: ["testa", "testb", "testc", "testd",],
-        correctChoice: "d",
-    },
-    {
-        question: "Test test test",
-        answers: ["testa", "testb", "testc", "testd",],
+        question: "Test",
+        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
         correctChoice: "c",
     },
     {
-        question: "Test test test",
-        answers: ["testa", "testb", "testc", "testd",],
+        question: "Test",
+        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
         correctChoice: "a",
     },
     {
-        question: "Test test test",
-        answers: ["testa", "testb", "testc", "testd",],
+        question: "Test",
+        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
+        correctChoice: "b",
+    },
+    {
+        question: "Test",
+        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
         correctChoice: "a",
+    },
+    {
+        question: "Test",
+        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
+        correctChoice: "c",
+    },
+    {
+        question: "Test",
+        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
+        correctChoice: "c",
+    },
+    {
+        question: "Test",
+        answers: ["AnswerA", "AnswerB", "AnswerC", "AnswerD",],
+        correctChoice: "d",
     },
 
 ]
@@ -91,7 +80,7 @@ function resetGame() {
     score = 0;
 }
 
-//Display question
+
 function displayQuestion(question) {
     answersContainer.querySelectorAll("button").forEach(button => {
         button.classList.remove("hover");
@@ -107,7 +96,7 @@ function displayQuestion(question) {
 }
 
 
-// Start
+// Start buton
 function startQuiz() {
     resetGame();
     displayQuestion(questionSet[questionNumber]);
@@ -121,7 +110,6 @@ function startQuiz() {
 
 }
 
-// End
 function endQuiz() {
     score = score + Math.floor(secondsLeft * (score / questionSet.length));
     clearInterval(interval);
@@ -134,7 +122,7 @@ function endQuiz() {
 }
 
 
-// Display highscores inside the modal
+
 function displayHighscores() {
 
     var highScore = getHighScoreFromLocalDrive();
@@ -154,25 +142,24 @@ function displayHighscores() {
 
 }
 
-// Clear highscores from the highscores display
+
 function clearHighScores() {
     localStorage.clear();
     displayHighscores();
 }
 
 
-// Display time in navigation bar
+
 function displayTime() {
-    remainingTimeLabel.textContent = secondsLeft;
+    remainingTime.textContent = secondsLeft;
 }
 
-// Retrieve highscore list from localdrive
 function getHighScoreFromLocalDrive() {
     return JSON.parse(localStorage.getItem('highscore'));
 }
 
 
-// Handle the answer that user picks from multiple choice options
+// Validation
 function handleClick() {
 
     while (acceptingAnswer) {
@@ -204,19 +191,24 @@ function checkAnswer(question) {
         answerFeedback.textContent = "Correct!";
         answerFeedback.style.color = "green";
     } else {
-        answerFeedback.textContent = "Incorrect!";
+        answerFeedback.textContent = "Wrong!";
         answerFeedback.style.color = "red";
-        if ((secondsLeft - penaltyDeduction) > 0) {
-            secondsLeft -= penaltyDeduction;
+        if ((secondsLeft - penalty) > 0) {
+            secondsLeft -= penalty;
             displayTime();
         } else {
             endQuiz();
         }
- 
+    }
+    setTimeout(function () {
+        answerFeedback.textContent = "";
+        feedbackSeparatorLine.classList.add("display-off");
+    }, 1000)
 }
 
 
 // Event listeners
+// ===============
 // Take user answer on multiplce choice question
 
 answerA.addEventListener("click", function () {
@@ -256,8 +248,6 @@ startButton.addEventListener("click", function () {
 });
 
 
-
-// Submit score 
 submitScoreButton.addEventListener("click", function () {
 
     var highScore = getHighScoreFromLocalDrive();
@@ -268,11 +258,13 @@ submitScoreButton.addEventListener("click", function () {
         name = "Anonymous";
     }
 
+   
     var i = 0;
     if (highScore === null) {
         highScore = [{ "name": name, "score": score }];
     } else {
 
+        
         while (i < numberOfHighscores && i < highScore.length && highScoreUnchanged) {
             if (score > highScore[i].score) {
                 highScore.splice(i, 0, { "name": name, "score": score })
@@ -280,6 +272,8 @@ submitScoreButton.addEventListener("click", function () {
             }
             i++;
         }
+
+      
         if (i < numberOfHighscores && highScoreUnchanged) {
             highScore.push({ "name": name, "score": score });
         }
@@ -292,9 +286,20 @@ submitScoreButton.addEventListener("click", function () {
 
 });
 
-// Clear highscores
+
 clearHighScoresButton.addEventListener("click", function () {
     clearHighScores();
 });
-}
+
+answersContainer.addEventListener("mouseover", function (event) {
+    var hoveringOver = event.target;
+    if (hoveringOver.matches("button")) {
+        hoveringOver.classList.add("hover");
+    }
+});
+
+answersContainer.addEventListener("mouseout", function (event) {
+    var hoveringOver = event.target;
+    hoveringOver.classList.remove("hover");
+});
 
