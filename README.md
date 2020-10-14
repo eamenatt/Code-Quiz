@@ -1,6 +1,6 @@
 # Code Quiz
 
-This is the 4th homework assignment for GW coding bootcamp. This is a time-based, multiple-choice quiz with dynamically updated HTML and CSS using JS.
+This project is a simple quiz to test the users knowledge of JavaScript. The user clicks the start button and has 120 seconds to answer 10 questions. For every wrong answer they are deducted 5 seconds. At the end they are asked to enter in a moniker for the "High Score" board. This is a time-based, multiple-choice quiz with dynamically updated HTML and CSS using JavaScript.
 
 # Deployed Application:
 https://eamenatt.github.io/Code-Quiz/
